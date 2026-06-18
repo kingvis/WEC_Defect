@@ -1,0 +1,41 @@
+# config/faults.yaml
+# Data-driven fault definitions. Faults are CONFIG ENTRIES, never hard-coded if/else branches.
+# Adding a generator fault later = adding a YAML block here, no code rewrite (see build guide §5.4).
+
+faults:
+  healthy:
+    label: 0
+    subsystem: none
+    description: "Nominal RM3, no degradation"
+    severity_levels: [1.0]
+    params: {}
+
+  pto_damping_loss:                 # FAULT 1 (core)
+    label: 1
+    subsystem: pto
+    description: "PTO damping coefficient reduced (seal wear / fluid loss)"
+    # multiply nominal PTO linear damping by these factors (1.0 = healthy)
+    severity_levels: [0.8, 0.6, 0.4, 0.2]
+    target: "pto(1).c"             # PTO damping coefficient in the input file
+
+  mooring_stiffness_loss:           # FAULT 2 (core)
+    label: 2
+    subsystem: mooring
+    description: "Mooring line stiffness reduced / line degraded (corrosion, partial failure)"
+    severity_levels: [0.75, 0.5, 0.25]
+    target: "mooring_stiffness_scale"
+
+  # ---- FUTURE (architecture already supports; do not build yet) ----
+  generator_fault:
+    label: 3
+    subsystem: generator
+    description: "Generator electrical fault / torque oscillation (via PTO-Sim)"
+    severity_levels: [0.8, 0.5]
+    enabled: false
+
+compound_faults:                    # the novel part: simultaneous faults
+  - name: pto_plus_mooring
+    label: 4
+    combine: [pto_damping_loss, mooring_stiffness_loss]
+    severity_levels: [0.5]          # representative compound case
+    enabled: true

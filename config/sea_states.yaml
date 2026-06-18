@@ -1,0 +1,16 @@
+# config/sea_states.yaml
+# PLACEHOLDER sea-state matrix. Regenerate from real NDBC buoy data with:
+#     python -m src.sea_states
+# A defensible matrix mirroring NREL practice: Hs 0.25-3.75 m, Tp 5-13 s, irregular (JONSWAP).
+# This small starter grid (3 x 3 = 9 states) keeps first batch runs fast on MATLAB Online.
+
+sea_states:
+  - {Hs: 0.75, Tp: 6.0}
+  - {Hs: 0.75, Tp: 9.0}
+  - {Hs: 0.75, Tp: 12.0}
+  - {Hs: 1.75, Tp: 6.0}
+  - {Hs: 1.75, Tp: 9.0}
+  - {Hs: 1.75, Tp: 12.0}
+  - {Hs: 3.00, Tp: 6.0}
+  - {Hs: 3.00, Tp: 9.0}
+  - {Hs: 3.00, Tp: 12.0}

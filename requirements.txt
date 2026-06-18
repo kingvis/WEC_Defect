@@ -1,0 +1,11 @@
+numpy
+pandas
+scipy
+scikit-learn
+torch            # CPU build is fine
+matplotlib
+pyyaml
+requests
+tsfresh          # optional engineered features
+shap             # explainability
+optuna           # optional hyperparameter tuning
