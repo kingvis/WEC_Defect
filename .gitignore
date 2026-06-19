@@ -1,25 +1,22 @@
-# Python
+# Python bytecode (build artifacts)
 __pycache__/
 *.py[cod]
-.venv/
-venv/
-env/
 *.egg-info/
 .pytest_cache/
 .ipynb_checkpoints/
 
-# Data (raw + processed are regenerated / released separately via DOI)
-data/raw/*
-!data/raw/.gitkeep
-data/processed/*
-!data/processed/.gitkeep
+# Virtual env — NOT tracked (platform-specific, large, and blocks pushes through the proxy).
+# Recreate with: py -3.13 -m venv .venv  (or just use py -3.13 + pip install -r requirements.txt)
+.venv/
+venv/
+env/
 
-# Model artefacts & figures
-outputs/*
-!outputs/.gitkeep
+# Bulk download artifact (data is already extracted into data/raw/)
+wec_data.zip
+
+# We DO track data/raw/ + data/processed/ + outputs/ in this private repo as a backup.
 
 # OS / editor
 .DS_Store
 Thumbs.db
-.vscode/
 .idea/
