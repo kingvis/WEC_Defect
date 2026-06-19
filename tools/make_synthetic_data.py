@@ -64,7 +64,13 @@ def synth_run(fault: str, sev: float, Hs: float, Tp: float, seed: int) -> pd.Dat
 
     Fpto = pto_c * vrel
     Ppto = Fpto * vrel                            # instantaneous PTO power
-    Tmoor = moor_k * (z1 - drift) + rng.normal(0, 0.01 * moor_k, len(t))
+
+    # Surge side (mooring): softer mooring -> larger low-frequency surge drift.
+    surge_gain = (NOMINAL_MOOR_K / moor_k) ** 0.5
+    x_common = surge_gain * 0.5 * _irregular_heave(t, Hs, Tp * 1.3, rng) + drift
+    x1 = x_common
+    x2 = x_common * 0.9
+    Tmoor = moor_k * x1 + rng.normal(0, 0.01 * moor_k, len(t))   # mooring surge force
 
     # Light sensor noise on every channel.
     def noisy(x, frac=0.01):
@@ -72,7 +78,8 @@ def synth_run(fault: str, sev: float, Hs: float, Tp: float, seed: int) -> pd.Dat
 
     return pd.DataFrame({
         "t": t, "z1": noisy(z1), "z2": noisy(z2), "rel": noisy(rel), "vrel": noisy(vrel),
-        "Fpto": noisy(Fpto), "Ppto": noisy(Ppto), "Tmoor": noisy(Tmoor),
+        "Fpto": noisy(Fpto), "Ppto": noisy(Ppto),
+        "x1": noisy(x1), "x2": noisy(x2), "Tmoor": noisy(Tmoor),
     })
 
 

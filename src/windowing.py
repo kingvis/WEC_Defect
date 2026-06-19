@@ -16,7 +16,10 @@ from .utils import DATA_PROCESSED, get_logger, label_map
 
 log = get_logger("windowing")
 
-CHANNELS = ["z1", "z2", "rel", "vrel", "Fpto", "Ppto", "Tmoor"]
+# 9 channels logged per run. Heave-side (PTO fault) + surge-side (mooring fault).
+#   z1,z2 heave; rel,vrel relative-heave + PTO velocity; Fpto,Ppto PTO force/power;
+#   x1,x2 surge (mooring drift); Tmoor mooring surge force.
+CHANNELS = ["z1", "z2", "rel", "vrel", "Fpto", "Ppto", "x1", "x2", "Tmoor"]
 
 
 def window_run(df, win: int = 512, stride: int = 256, transient: int = 2000) -> np.ndarray:
