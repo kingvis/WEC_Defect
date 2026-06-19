@@ -28,7 +28,7 @@ from src.windowing import CHANNELS, build_dataset
 
 log = get_logger("leadtime")
 
-TARGET_SS = "Hs192_Tp108"          # sea state used for the degradation timeline (held out)
+TARGET_SS = "Hs300_Tp105"          # sea state used for the degradation timeline (held out)
 STAGES = ["healthy_sev100", "pto_damping_loss_sev80", "pto_damping_loss_sev60",
           "pto_damping_loss_sev40", "pto_damping_loss_sev20"]
 SEV = [1.0, 0.8, 0.6, 0.4, 0.2]    # nominal severity per stage
