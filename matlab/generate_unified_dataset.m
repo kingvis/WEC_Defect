@@ -31,9 +31,10 @@ specs = {
   'mooring_stiffness_loss', 2, [0.75 0.5 0.25];
   'pto_plus_mooring',       4, 0.5;
 };
-seaStates = [0.75 6; 0.75 9; 0.75 12;            % 3x3 grid
-             1.75 6; 1.75 9; 1.75 12;
-             3.00 6; 3.00 9; 3.00 12];
+% REAL sea states from NDBC buoys 46022/46050/46026 (2020-2022); see config/sea_states.yaml
+seaStates = [1.19 7.7; 1.19 10.8; 1.19 14.8;     % 3x3 grid (Hs P15/P50/P90 x Tp P15/P50/P90)
+             1.92 7.7; 1.92 10.8; 1.92 14.8;
+             3.59 7.7; 3.59 10.8; 3.59 14.8];
 % ----------------------------
 
 addpath(genpath(wecSimRoot));

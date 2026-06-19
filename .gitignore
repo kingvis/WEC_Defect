@@ -20,3 +20,6 @@ wec_data.zip
 .DS_Store
 Thumbs.db
 .idea/
+
+# NDBC raw buoy text files (large; derived grid is in config/sea_states.yaml, re-fetchable)
+data/ndbc/*.txt

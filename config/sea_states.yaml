@@ -1,16 +1,19 @@
 # config/sea_states.yaml
-# PLACEHOLDER sea-state matrix. Regenerate from real NDBC buoy data with:
-#     python -m src.sea_states
-# A defensible matrix mirroring NREL practice: Hs 0.25-3.75 m, Tp 5-13 s, irregular (JONSWAP).
-# This small starter grid (3 x 3 = 9 states) keeps first batch runs fast on MATLAB Online.
+# REAL sea-state grid derived from NDBC standard-meteorological buoy data:
+#   buoys 46022 (Eel River, N. California), 46050 (Stonewall Bank, Oregon),
+#   46026 (San Francisco), years 2020-2022 — 73,920 valid hourly records.
+# Hs points = 15th/50th/90th percentile of WVHT; Tp points = 15th/50th/90th of DPD.
+# Cite this provenance in the thesis methods.
+#
+# distribution: Hs mean=2.16 m (P10 1.08, P95 4.23); Tp mean=11.08 s (P10 7.14, P90 14.81)
 
 sea_states:
-  - {Hs: 0.75, Tp: 6.0}
-  - {Hs: 0.75, Tp: 9.0}
-  - {Hs: 0.75, Tp: 12.0}
-  - {Hs: 1.75, Tp: 6.0}
-  - {Hs: 1.75, Tp: 9.0}
-  - {Hs: 1.75, Tp: 12.0}
-  - {Hs: 3.00, Tp: 6.0}
-  - {Hs: 3.00, Tp: 9.0}
-  - {Hs: 3.00, Tp: 12.0}
+  - {Hs: 1.19, Tp: 7.7}
+  - {Hs: 1.19, Tp: 10.8}
+  - {Hs: 1.19, Tp: 14.8}
+  - {Hs: 1.92, Tp: 7.7}
+  - {Hs: 1.92, Tp: 10.8}
+  - {Hs: 1.92, Tp: 14.8}
+  - {Hs: 3.59, Tp: 7.7}
+  - {Hs: 3.59, Tp: 10.8}
+  - {Hs: 3.59, Tp: 14.8}
