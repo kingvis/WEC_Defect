@@ -23,3 +23,6 @@ Thumbs.db
 
 # NDBC raw buoy text files (large; derived grid is in config/sea_states.yaml, re-fetchable)
 data/ndbc/*.txt
+
+# Degradation sweep bulk download artifact
+degradation.zip
